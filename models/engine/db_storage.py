@@ -77,10 +77,9 @@ class DBStorage:
 
     def get(self, cls, id):
         """"method testing return object based on class name"""
-        if cls:
-            get_cls = self.__models_available.get(cls)
-            if get_cls:
-                obj = self.__session.query(get_cls).filter_by(id=id).first()
+        ok_id = "{}.{}".format(cls.__name__, id)
+        if ok_id in self.all().keys():
+            return self.all()[ok_id]
         return None
         
     def count(self, cls=None):
