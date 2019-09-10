@@ -72,12 +72,11 @@ class FileStorage:
     def get(self, cls, id):
         """"method testing return object based on class name"""
         if not isinstance(cls, str) or not isinstance(id, str):
-            return None
-        for idx in self.__objects.values():
-            if idx.id == id and idx.__class__.__name__ == cls:
-                return idx
+            for idx in self.__objects.values():
+                if idx.id == id and idx.__class__.__name__ == cls:
+                    return idx
         return None
-        
+
     def count(self, cls=None):
         """returns count the number of objects in storage"""
         return (len(self.all(cls)))
