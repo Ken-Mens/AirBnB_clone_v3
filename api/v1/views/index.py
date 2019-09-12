@@ -1,11 +1,12 @@
 #!/usr/bin/python3
+""" index module to be used for api"""
 
 from api.v1.views import app_views
 from flask import Flask, jsonify
 from models import storage
 
 
-@app_views.route('/status', strict_slashes=False)
+@app_views.route('/status', methods=["GET"], strict_slashes=False)
 def stat():
     """ return json stat: OK """
     return jsonify({"status": "OK"})
