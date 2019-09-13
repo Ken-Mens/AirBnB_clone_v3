@@ -62,8 +62,8 @@ def put_state(state_id):
         abort(404)
     if not n_dic:
         return jsonify({"error": "Not a JSON"}), 400
-    for k, v in n_dic.items():
+    for key, val in n_dic.items():
         if key not in ['id', 'created_at', 'updated_at']:
-            setattr(state, k, v)
+            setattr(state, key, val)
     state.save()
     return jsonify(state.to_dict()), 200
