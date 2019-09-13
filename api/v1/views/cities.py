@@ -18,8 +18,9 @@ def get_city(state_id):
             li_st.append(cty.to_dict())
     return jsonify(li_st)
 
+
 @app_views.route("/cities/<city_id>", methods=["GET"])
-def gt_state_id(city_id):
+def gt_city_id(city_id):
     """Returns a City object"""
     ci = storage.get("City", city_id)
     if ci:
