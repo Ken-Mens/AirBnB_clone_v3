@@ -55,8 +55,10 @@ def creat_city(state_id):
     if 'name' not in n_dic:
         abort(400, {"Missing name"})
     n_ci = City(**n_dic)
+    storage.new(n_ci)
     storage.save()
-    return jsonify(n_ci.to_dict()), 201
+    ok = n_ci.to_dict()
+    return jsonify(ok), 201
 
 
 @app_views.route("/cities/<city_id>", methods=["PUT"],
