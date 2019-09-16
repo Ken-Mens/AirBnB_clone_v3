@@ -7,7 +7,7 @@ from flask import Flask, jsonify, make_response, request, abort
 from models.user import User
 
 
-@app_views.route("/users", methods=["GET"])
+@app_views.route("/users", methods=["GET"], strict_slashes=False)
 def get_users():
     """Retrieve user object"""
     user_l = []
@@ -16,7 +16,7 @@ def get_users():
     return jsonify(user_l)
 
 
-@app_views.route("/users/<user_id>", methods=["GET"])
+@app_views.route("/users/<user_id>", methods=["GET"], strict_slashes=False)
 def get_auser(user_id):
     """Retrieve one user"""
     neo = storage.get('User', user_id)
@@ -26,7 +26,7 @@ def get_auser(user_id):
         abort(404)
 
 
-@app_views.route("/users/<user_id>", methods=["DELETE"])
+@app_views.route("/users/<user_id>", methods=["DELETE"], strict_slashes=False)
 def delete_auser(user_id):
     """Deletes a State object"""
     neo = storage.get("User", user_id)
@@ -38,7 +38,7 @@ def delete_auser(user_id):
         abort(404)
 
 
-@app_views.route("/users", methods=["POST"])
+@app_views.route("/users", methods=["POST"], strict_slashes=False)
 def user_created():
     """Creates a User object"""
     d = request.get_json()
@@ -54,7 +54,7 @@ def user_created():
     return jsonify(neo.to_dict()), 201
 
 
-@app_views.route("/users/<user_id>", methods=["PUT"])
+@app_views.route("/users/<user_id>", methods=["PUT"], strict_slashes=False)
 def update_user(user_id=None):
     """Updates a User"""
     dic_t = request.get_json()
